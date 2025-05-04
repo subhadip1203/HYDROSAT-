@@ -1,0 +1,31 @@
+###
+POST http://localhost:8000/api/feedback
+Content-Type: application/json
+
+{
+    "name": "subhadip pahari",
+    "email": "subhadipsjsc@gmail.com",
+    "text": "this is not good"
+}
+
+
+###  Admin Login
+POST http://localhost:8000/api/admin/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "Abc@123"
+}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1Njc4OTAiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2MjUzODc3LCJleHAiOjE3NDYyNTc0Nzd9.XUuqc1VlD5iVYNMDx2R10BZc737z5VnHoXCahUdLzEA
+
+
+
+###
+GET  http://localhost:8000/api/admin/feedbacks
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
