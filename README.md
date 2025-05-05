@@ -32,7 +32,7 @@ This project is a full-stack application for collecting customer feedback and an
 2. **Create a `.env` file**  
    Include the required environment variables. <br>
    I sent an Email stating the .env file content. <br>
-   Keep the .env file in root of teh filde (same lavel as docker-compose.yml)
+   Keep the .env file in root of the file (same lavel as docker-compose.yml)
 
 
 3. **Run Docker Compose**
