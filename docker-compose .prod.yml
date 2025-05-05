@@ -1,0 +1,40 @@
+services:
+  frontend-nginx:
+    container_name: nginx_react_frontend
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "80:80"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    expose:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+  
+  nodebackend:
+    build:
+      context: ./node-express-backend
+    container_name: node-express-backend
+    expose:
+      - "8000"
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - frontend-nginx
+
+  pythonservice:
+    build:
+      context: ./python-sentiment-analysis
+    container_name: python_sentiment
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - nodebackend

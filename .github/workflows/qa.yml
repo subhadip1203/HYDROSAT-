@@ -1,0 +1,36 @@
+name: Deploy QA branch
+
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  deploy:
+    runs-on: hydrosat-qa
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Stop existing Docker Compose services
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.qa.server.yml down
+
+    - name: Pull latest code
+      run: |
+        git pull origin QA
+
+    - name: Build Docker Compose
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.qa.server.yml build
+    
+    - name: run Docker Compose
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.qa.server.yml  up -d
+
+    - name: remove unused images not just the dangling ones
+      run: |
+        docker system prune -af
+
+    

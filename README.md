@@ -1,4 +1,4 @@
-# HYDROSAT TAKE-HOME ASSESSMENT DOCUMENTATION
+## HYDROSAT TAKE-HOME ASSESSMENT DOCUMENTATION
 
 ## 📖 PROJECT OVERVIEW
 
@@ -30,11 +30,21 @@ This project is a full-stack application for collecting customer feedback and an
    ```
 
 2. **Create a `.env` file**  
-   Include the required environment variables (see `.env.example` or the section below).
+   Include the required environment variables. <br>
+   I sent an Email stating the .env file content. <br>
+   Keep the .env file in root of teh filde (same lavel as docker-compose.yml)
+
 
 3. **Run Docker Compose**
+
+   For Build and run:
    ```bash
    docker-compose up --build
+   ```
+
+   For running as demon mode:
+   ```bash
+   docker-compose up -d
    ```
 
 4. **Access the services**
@@ -88,15 +98,6 @@ This project is a full-stack application for collecting customer feedback and an
 
 ---
 
-## ✅ TESTING
-
-Add your testing commands here, e.g.:
-
-```bash
-npm test
-```
-
----
 
 ## 🛠 LOCAL DEVELOPMENT
 

@@ -1,0 +1,36 @@
+name: Deploy test branch
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: toodles-test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Stop existing Docker Compose services
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.server.yml down
+
+    - name: Pull latest code
+      run: |
+        git pull origin test
+
+    - name: Build Docker Compose
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.server.yml build
+    
+    - name: run Docker Compose
+      run: |
+        docker compose -f ${{ github.workspace }}/docker-compose.dev.server.yml  up -d
+
+    - name: remove unused images not just the dangling ones
+      run: |
+        docker system prune -af
+
+    
