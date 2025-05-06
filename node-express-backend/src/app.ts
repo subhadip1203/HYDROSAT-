@@ -1,7 +1,7 @@
 import express from 'express';
 import cors, { CorsOptions } from 'cors';
 import routes from './routes';
-import { requestLogger } from './middlewares/logs/logger';
+import { requestLogger } from './middlewares/logging/logger';
 
 const app = express();
 const whitelist = ['http://localhost:5173', 'http://localhost'];
